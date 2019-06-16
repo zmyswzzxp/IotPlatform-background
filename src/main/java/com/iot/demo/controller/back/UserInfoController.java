@@ -43,7 +43,7 @@ public class UserInfoController {
 		
 		try {
 			userinfobackservice.addUserInfo(userinfo);
-			model.addAttribute("result","添加用户信息成功zzz");
+			model.addAttribute("result","添加用户信息成功zz111z");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
