@@ -37,7 +37,7 @@ public class UserInfoController {
 	
 	
 	@RequestMapping("/add")
-	@CacheEvict(cacheNames="zy",allEntries=true)
+	//@CacheEvict(cacheNames="zy",allEntries=true)
 	public String add(UserInfoBack userinfo,Model model)
 	{
 		
@@ -141,7 +141,7 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping("update")
-	@CacheEvict(cacheNames="zy",allEntries=true)
+	//@CacheEvict(cacheNames="zy",allEntries=true)
 	public String updateUserInfo(UserInfoBack userInfo,Model model){
 		try {
 			userinfobackservice.updateUserInfo(userInfo);

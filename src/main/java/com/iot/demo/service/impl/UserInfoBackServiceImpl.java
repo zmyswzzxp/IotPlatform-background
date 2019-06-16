@@ -48,7 +48,7 @@ public class UserInfoBackServiceImpl implements UserInfoBackService  {
 		return userInfoBackMapper.countByExample(userInfo);
 	}
 
-	@Cacheable(cacheNames="zy", key="#p1")
+	//@Cacheable(cacheNames="zy", key="#p1")
 	@Override
 	public PageBean<UserInfoBack> getUserBackInfoList(UserInfoBack userInfo, Integer page) {
 		// TODO Auto-generated method stub
