@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iot.demo.bean.UserInfoBack;
-import com.iot.demo.bean.testtable;
+
 import com.iot.demo.dao.UserInfoBackMapper;
-import com.iot.demo.dao.testtableMapper;
+
 import com.iot.demo.service.UserInfoBackService;
-import com.iot.demo.service.tabletestService;
 import com.iot.demo.utils.Const;
 import com.iot.demo.utils.PageBean;
 import com.iot.demo.utils.PageUtil;
