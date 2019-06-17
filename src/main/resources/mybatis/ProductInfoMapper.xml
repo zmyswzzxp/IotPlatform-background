@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iot.demo.dao.ProductInfoMapper">
+
+	
+	<resultMap type="ProductInfo" id="productmap">
+		<id column="product_id" property="productId"></id>
+		<result column="product_name" property="productName"></result>
+		<result column="product_price" property="productPrice"></result>
+		<result column="product_url" property="productUrl"></result>
+			<result column="product_desc" property="productDesc"></result>
+		<result column="product_state" property="productState"></result>
+		<result column="product_intro" property="productIntro"></result>
+	</resultMap> 
+	
+	
+	<insert id="addProductInfo" parameterType="ProductInfo">
+		insert into product_info(product_name,product_price,product_url,product_desc,product_state,product_intro) 
+		values(#{productName},#{productPrice},#{productUrl},#{productDesc},#{productState},#{productIntro})
+	</insert>
+	
+
+
+</mapper>

@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	config.filebrowserUploadUrl = '/back/goodsinfo/uploadfile';//上传文件的保存路径
-	config.filebrowserImageUploadUrl = '/back/goodsinfo/uploadfile';//上传图片的保存路径
-	config.filebrowserFlashUploadUrl = '/back/goodsinfo/uploadfile';//上传flash的保存路径
+	config.filebrowserUploadUrl = '/back/productinfo/uploadfile';//上传文件的保存路径
+	config.filebrowserImageUploadUrl = '/back/productinfo/uploadfile';//上传图片的保存路径
+	config.filebrowserFlashUploadUrl = '/back/productinfo/uploadfile';//上传flash的保存路径
 };

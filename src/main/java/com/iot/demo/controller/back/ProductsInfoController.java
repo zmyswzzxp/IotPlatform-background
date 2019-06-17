@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iot.demo.bean.ProductInfo;
 import com.iot.demo.service.ProductsInfoService;
 
 
 
 @Controller
-@RequestMapping("/back/productsinfo/")
+@RequestMapping("/back/productinfo/")
 public class ProductsInfoController {
 	
 	@Autowired
@@ -30,7 +31,7 @@ public class ProductsInfoController {
 	@RequestMapping("loadadd")
 	public String loadAdd()
 	{
-		return "back/productsinfo/productsinfo_add";
+		return "back/productinfo/productinfo_add";
 	}
 	
 	@RequestMapping("uploadimg")
@@ -39,6 +40,19 @@ public class ProductsInfoController {
 		String url=productsInfoService.doPutToFilesServer(upload);
 		return url;
 		
+	}
+	
+	@RequestMapping("uploadfile")
+	public void uploadFile(@RequestParam MultipartFile upload,HttpServletResponse response,HttpServletRequest request){
+		String url = productsInfoService.doPutToFilesServer(upload);
+		try {
+			PrintWriter out = response.getWriter();
+			String callBack = request.getParameter("CKEditorFuncNum");
+			out.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callBack + ",'" + url + "')</script>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
 //	
 //	
@@ -55,19 +69,19 @@ public class ProductsInfoController {
 //		}	
 //	}
 //	
-//	@RequestMapping("add")
-//	public String add(GoodsInfo goodsInfo,Model model)
-//	{
-//		try {
-//			goodsInfoService.addGoodsInfo(goodsInfo);
-//		model.addAttribute("result","添加商品成功");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			model.addAttribute("result","添加商品失败");
-//		}
-//		return "back/goodsinfo/goodsinfo_info";
-//	}
+	@RequestMapping("add")
+	public String add(ProductInfo productInfo,Model model)
+	{
+		try {
+			productsInfoService.addProductInfo(productInfo);
+		model.addAttribute("result","添加产品成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("result","添加产品失败");
+		}
+		return "back/productinfo/productinfo_info";
+	}
 //	
 //	
 //	

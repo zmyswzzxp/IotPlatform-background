@@ -2,10 +2,12 @@ package com.iot.demo.service.impl;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.iot.demo.bean.ProductInfo;
+import com.iot.demo.dao.ProductInfoMapper;
 import com.iot.demo.service.ProductsInfoService;
 import com.iot.demo.utils.Const;
 import com.iot.demo.utils.FileNameCreator;
@@ -15,7 +17,8 @@ import com.sun.jersey.api.client.WebResource;
 @Service
 public class ProductsInfoServiceImpl implements ProductsInfoService {
 
-	
+	@Autowired
+	private ProductInfoMapper productInfoMapper;
 	
 	
 	@Override
@@ -38,10 +41,14 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 		return null;
+	}
+
+	@Override
+	public void addProductInfo(ProductInfo productInfo) throws Exception {
+		// TODO Auto-generated method stub
+		productInfo.setProductState(Const.GOODS_STATE_INIT);
+		productInfoMapper.addProductInfo(productInfo);
 	}
 
 }
