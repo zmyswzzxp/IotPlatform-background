@@ -15,28 +15,28 @@
 <div>
 	<ul class="breadcrumb" style="margin: 0px;">
 		<li>系统管理</li>
-		<li>商品管理</li>
-		<li>商品添加</li>
+		<li>产品管理</li>
+		<li>产品添加</li>
 	</ul>
 </div>
-<form id="goodsform" action="/back/goodsinfo/add" method="post" class="form-horizontal">
+<form id="productsform" action="/back/productsinfo/add" method="post" class="form-horizontal">
 	<h5 class="page-header alert-info"
 		style="margin: 0px; padding: 10px; margin-bottom: 10px;">基本信息</h5>
 	<!-- 开始1 -->
 	<div class="row">
 		<div class="col-xs-5">
 			<div class="form-group ">
-				<label class="col-xs-3 control-label">商品名称</label>
+				<label class="col-xs-3 control-label">产品名称</label>
 				<div class="col-xs-9 ">
-					<input type="text" name="goodsName" class="form-control" placeholder="请输入商品名称" />
+					<input type="text" name="productsName" class="form-control" placeholder="请输入产品名称" />
 				</div>
 			</div>
 		</div>
 		<div class="col-xs-5">
 			<div class="form-group ">
-				<label class="col-xs-3 control-label">商品价格</label>
+				<label class="col-xs-3 control-label">产品价格</label>
 				<div class="col-xs-9 ">
-					<input type="text" name="goodsPrice" class="form-control" placeholder="请输入商品价格" />
+					<input type="text" name="productsPrice" class="form-control" placeholder="请输入产品价格" />
 				</div>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 	<div class="row">
 		<div class="col-xs-5">
 			<div class="form-group ">
-				<label class="col-xs-3 control-label">商品图片</label>
+				<label class="col-xs-3 control-label">产品图片</label>
 				<div class="col-xs-9 ">
 					<input type="file" name="upload" class="form-control" onchange="uploadImg()"/>
 				</div>
@@ -56,8 +56,8 @@
 			<div class="form-group ">
 				<label class="col-xs-3 control-label">图片预览</label>
 				<div class="col-xs-9 ">
-					<img alt="" id="goodsimg" src="" style="width:100px;height:150px;object-fit:contain">
-					<input type="hidden" name="goodsUrl" id="goodsUrl">
+					<img alt="" id="productsimg" src="" style="width:100px;height:150px;object-fit:contain">
+					<input type="hidden" name="productsUrl" id="productsUrl">
 				</div>
 			</div>
 		</div>
@@ -66,25 +66,25 @@
 
 
 	<h5 class="page-header alert-info"
-		style="margin: 0px; padding: 10px; margin-bottom: 10px;">商品简介</h5>
+		style="margin: 0px; padding: 10px; margin-bottom: 10px;">产品简介</h5>
 	<!-- 开始5 -->
 	<div class="row">
 			<div class="form-group ">
-				<label class="col-xs-2 control-label">商品简介</label>
+				<label class="col-xs-2 control-label">产品简介</label>
 				<div class="col-xs-10 ">
-					<textarea name="goodsIntro" rows="" class="col-xs-12 " cols=""></textarea>
+					<textarea name="productsIntro" rows="" class="col-xs-12 " cols=""></textarea>
 				</div>
 			</div>
 	</div>
 	<!--结束5 -->
 	
 	<h5 class="page-header alert-info"
-		style="margin: 0px; padding: 10px; margin-bottom: 10px;">商品详情</h5>
+		style="margin: 0px; padding: 10px; margin-bottom: 10px;">产品详情</h5>
 	<!-- 开始5 -->
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="form-group ">
-				<textarea rows="" name="goodsDesc" class="ckeditor" cols=""></textarea>
+				<textarea rows="" name="productsDesc" class="ckeditor" cols=""></textarea>
 			</div>
 		</div>
 	</div>
@@ -92,7 +92,7 @@
 
 	<div class="row">
 		<div class="col-xs-3 col-xs-offset-4">
-			<input type="submit" class="btn btn-success" value="保存商品" /> <input
+			<input type="submit" class="btn btn-success" value="保存产品" /> <input
 				type="reset" class="btn btn-danger" value="重置信息" />
 		</div>
 	</div>
@@ -102,14 +102,14 @@
 <script type="text/javascript">
 	function uploadImg(){
 		var options={
-				url:"/back/goodsinfo/uploadimg",
+				url:"/back/productsinfo/uploadimg",
 				type:"post",
 				success:function(data){
-					$("#goodsimg").attr("src",data);
-					$("#goodsUrl").val(data);
+					$("#productsimg").attr("src",data);
+					$("#productsUrl").val(data);
 				}
 		}
-		$("#goodsform").ajaxSubmit(options);
+		$("#productsform").ajaxSubmit(options);
 	}
 </script>
 </body>
