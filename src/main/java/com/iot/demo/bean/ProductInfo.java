@@ -1,6 +1,8 @@
 package com.iot.demo.bean;
 
-public class ProductInfo {
+import com.iot.demo.utils.BaseBean;
+
+public class ProductInfo extends BaseBean{
     private Integer productId;
 
     private String productName;

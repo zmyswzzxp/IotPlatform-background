@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>商品管理-商品查询</title>
+<title>产品管理-产品查询</title>
 <link href="/resource/css/bootstrap.min.css" rel="stylesheet" />
 <script type="text/javascript" src="/resource/js/jquery.min.js"></script>
 <script type="text/javascript"
@@ -13,16 +13,16 @@
 	<div>
 		<ul class="breadcrumb" style="margin: 0px;">
 			<li>系统管理</li>
-			<li>商品管理</li>
-			<li>商品查询</li>
+			<li>产品管理</li>
+			<li>产品查询</li>
 		</ul>
 	</div>
-	<form action="/back/goodsinfo/list" class="form-inline">
+	<form action="/back/productinfo/list" class="form-inline">
 		<div class="row alert alert-info" style="margin: 0px; padding: 5px;">
 			<div class="form-group">
 				<input type="hidden" name="page" value="1">
-				<input type="text" name="goodsName" class="form-control" placeholder="请输入商品名称" />
-				<label>商品状态:</label> <select name="goodsState" class="form-control">
+				<input type="text" name="productName" class="form-control" placeholder="请输入产品名称" />
+				<label>产品状态:</label> <select name="productState" class="form-control">
 					<option value="">---------</option>
 					<option value="1">初始</option>
 					<option value="2">上架</option>
@@ -35,39 +35,39 @@
 		<div class="row" style="padding: 15px;">
 			<table class="table table-hover table-condensed">
 				<tr>
-					<th>商品编号</th>
-					<th>商品简介</th>
-					<th>商品价格</th>
-					<th>商品状态</th>
+					<th>产品编号</th>
+					<th>产品简介</th>
+					<th>产品价格</th>
+					<th>产品状态</th>
 					<th>操作</th>
 				</tr>
 				<#list (pageBean.list)! as g>
 					<tr>
-						<td>${(g.goodsId)!}</td>
-						<td><img src="${(g.goodsUrl)!}" style="width:50px;height:75px;object-fit:contain">${(g.goodsName)!}</td>
-						<td>${(g.goodsPrice)!}</td>
+						<td>${(g.productId)!}</td>
+						<td><img src="${(g.productUrl)!}" style="width:50px;height:75px;object-fit:contain">${(g.productName)!}</td>
+						<td>${(g.productPrice)!}</td>
 						<td>
-						<#if g.goodsState??>
-							<#if g.goodsState == '1'>
+						<#if g.productState??>
+							<#if g.productState == '1'>
 								初始化
 							</#if>
-							<#if g.goodsState == '2'>
+							<#if g.productState == '2'>
 								上架
 							</#if>
-							<#if g.goodsState == '3'>
+							<#if g.productState == '3'>
 								下架
 							</#if>
 						</#if>
 						</td>
-						<td><a href="/back/goodsinfo/loadupdate?goodsId=${(g.goodsId)!}">修改</a> 
-						<#if g.goodsState == '1'>
-								<a href="/back/goodsinfo/upgoods?goodsId=${(g.goodsId)!}">上架</a>
+						<td><a href="/back/productinfo/loadupdate?productId=${(g.productId)!}">修改</a> 
+						<#if g.productState == '1'>
+								<a href="/back/productinfo/upproduct?productId=${(g.productId)!}">上架</a>
 						</#if>
-						<#if g.goodsState == '3'>
-								<a href="/back/goodsinfo/upgoods?goodsId=${(g.goodsId)!}">上架</a>
+						<#if g.productState == '3'>
+								<a href="/back/productinfo/upproduct?productId=${(g.productId)!}">上架</a>
 						</#if>
-						<#if g.goodsState == '2'>
-								<a href="/back/goodsinfo/downgoods?goodsId=${(g.goodsId)!}">下架</a>
+						<#if g.productState == '2'>
+								<a href="/back/productinfo/downproduct?productId=${(g.productId)!}">下架</a>
 							</#if>
 					</tr>
 				</#list>
@@ -78,15 +78,15 @@
 				<#if pageBean.currentPage == 1>
 					第一页 上一页
 				<#else>
-					<li><a href="/back/goodsinfo/list?page=1&goodsName=${(goodsinfo.goodsName)!}&goodsState=${(goodsinfo.goodsState)!}">第一页</a></li>
-					<li><a href="/back/goodsinfo/list?page=${pageBean.currentPage - 1}&goodsName=${(goodsinfo.goodsName)!}&goodsState=${(goodsinfo.goodsState)!}">上一页</a></li>
+					<li><a href="/back/productinfo/list?page=1&productName=${(productinfo.goodsName)!}&productState=${(productinfo.productState)!}">第一页</a></li>
+					<li><a href="/back/productinfo/list?page=${pageBean.currentPage - 1}&productName=${(productinfo.productName)!}&goodsState=${(productinfo.productState)!}">上一页</a></li>
 				</#if>
 				
 				<#if pageBean.currentPage == pageBean.totalPage>
 					下一页 最末页
 				<#else>
-					<li><a href="/back/goodsinfo/list?page=${pageBean.currentPage + 1}&goodsName=${(goodsinfo.goodsName)!}&goodsState=${(goodsinfo.goodsState)!}">下一页</a></li>
-					<li><a href="/back/goodsinfo/list?page=${pageBean.totalPage}&goodsName=${(goodsinfo.goodsName)!}&goodsState=${(goodsinfo.goodsState)!}">最末页</a></li>
+					<li><a href="/back/productinfo/list?page=${pageBean.currentPage + 1}&productName=${(productinfo.goodsName)!}&productState=${(productinfo.productState)!}">下一页</a></li>
+					<li><a href="/back/productinfo/list?page=${pageBean.totalPage}&productName=${(productinfo.goodsName)!}&productState=${(productinfo.productState)!}">最末页</a></li>
 				</#if>
 				</ul>
 			</nav>

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.iot.demo.bean.ProductInfo;
 import com.iot.demo.service.ProductsInfoService;
+import com.iot.demo.utils.PageBean;
 
 
 
@@ -25,7 +25,7 @@ import com.iot.demo.service.ProductsInfoService;
 public class ProductsInfoController {
 	
 	@Autowired
-	private ProductsInfoService productsInfoService;
+	private ProductsInfoService productInfoService;
 	
 	
 	@RequestMapping("loadadd")
@@ -37,14 +37,14 @@ public class ProductsInfoController {
 	@RequestMapping("uploadimg")
 	public @ResponseBody String uploadImg(@RequestParam MultipartFile upload){
 		System.out.println("upload="+upload);
-		String url=productsInfoService.doPutToFilesServer(upload);
+		String url=productInfoService.doPutToFilesServer(upload);
 		return url;
 		
 	}
 	
 	@RequestMapping("uploadfile")
 	public void uploadFile(@RequestParam MultipartFile upload,HttpServletResponse response,HttpServletRequest request){
-		String url = productsInfoService.doPutToFilesServer(upload);
+		String url = productInfoService.doPutToFilesServer(upload);
 		try {
 			PrintWriter out = response.getWriter();
 			String callBack = request.getParameter("CKEditorFuncNum");
@@ -54,6 +54,17 @@ public class ProductsInfoController {
 			e.printStackTrace();
 		}	
 	}
+	
+	
+	@RequestMapping("list")
+	public String list(ProductInfo productInfo,Model model,Integer page){
+		PageBean<ProductInfo> pageBean=productInfoService.getProductInfoList(productInfo, page);
+	   model.addAttribute("pageBean",pageBean);
+	   model.addAttribute("productInfo",productInfo);
+	   return "back/productInfo/productInfo_list";
+	}
+	
+	
 //	
 //	
 //	@RequestMapping("uploadfile")
@@ -73,7 +84,7 @@ public class ProductsInfoController {
 	public String add(ProductInfo productInfo,Model model)
 	{
 		try {
-			productsInfoService.addProductInfo(productInfo);
+			productInfoService.addProductInfo(productInfo);
 		model.addAttribute("result","添加产品成功");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -93,57 +104,57 @@ public class ProductsInfoController {
 //	   return "back/goodsInfo/goodsInfo_list";
 //	}
 //	
-//	@RequestMapping("loadupdate")
-//	public String loadUpdate(GoodsInfo goodsInfo,Model model)
-//	{
-//		GoodsInfo pgoods=goodsInfoService.getGoodsInfo(goodsInfo);
-//		 model.addAttribute("goodsinfo",pgoods);
-//		 return "back/goodsInfo/goodsInfo_update";
-//	}
+	@RequestMapping("loadupdate")
+	public String loadUpdate(ProductInfo productInfo,Model model)
+	{
+		ProductInfo pproductInfo=productInfoService.getGoodsInfo(productInfo);
+		 model.addAttribute("productinfo",pproductInfo);
+		 return "back/productInfo/productInfo_update";
+	}
 //	
-//	@RequestMapping("update")
-//	public String update(GoodsInfo goodsInfo,Model model)
-//	{
-//		try {
-//			goodsInfoService.updateGoodsInfo(goodsInfo);
-//		model.addAttribute("result","商品修改成功");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			model.addAttribute("result","商品修改失败");
-//		}
-//		return "back/goodsinfo/goodsinfo_info";
-//	}
+	@RequestMapping("update")
+	public String update(ProductInfo productInfo,Model model)
+	{
+		try {
+			productInfoService.updateProductInfo(productInfo);
+		model.addAttribute("result","产品修改成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("result","产品修改失败");
+		}
+		return "back/productinfo/productinfo_info";
+	}
 //		
 //	
-//	@RequestMapping("upgoods")
-//	public String upGoods(GoodsInfo goodsInfo,Model model)
-//	{
-//		try {
-//			goodsInfoService.upGoodsInfo(goodsInfo);
-//		model.addAttribute("result","商品上架成功");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			model.addAttribute("result","商品上架失败");
-//		}
-//		return "back/goodsinfo/goodsinfo_info";
-//	}
+	@RequestMapping("upproduct")
+	public String upGoods(ProductInfo productInfo,Model model)
+	{
+		try {
+			productInfoService.updateProductInfo(productInfo);
+		model.addAttribute("result","产品上架成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("result","产品上架失败");
+		}
+		return "back/productinfo/productinfo_info";
+	}
 //	
 //	
-//	@RequestMapping("downgoods")
-//	public String downGoods(GoodsInfo goodsInfo,Model model)
-//	{
-//		try {
-//			goodsInfoService.downGoodsInfo(goodsInfo);
-//		model.addAttribute("result","商品下架成功");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			model.addAttribute("result","商品下架失败");
-//		}
-//		return "back/goodsinfo/goodsinfo_info";
-//	}
+	@RequestMapping("downproduct")
+	public String downGoods(ProductInfo productInfo,Model model)
+	{
+		try {
+			productInfoService.downProductInfo(productInfo);
+			model.addAttribute("result", "产品下架成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("result", "产品下架失败");
+		}
+		return "back/productinfo/productinfo_info";
+	}
 //	
 //	
 //	@RequestMapping("delete")

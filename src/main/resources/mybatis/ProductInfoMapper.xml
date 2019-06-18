@@ -19,6 +19,73 @@
 		values(#{productName},#{productPrice},#{productUrl},#{productDesc},#{productState},#{productIntro})
 	</insert>
 	
+	
+	<select id="getProductInfoList" parameterType="ProductInfo" resultMap="productmap">
+	     select * from product_info
+	     	<where>
+			<if test="productName != null and productName != ''">
+				<bind name="namePattern" value="'%' + _parameter.productName + '%'"></bind>
+				and product_name like #{namePattern}
+			</if>
+			<if test="productState != null and productState != ''">
+
+				and product_state  =#{productState}
+			</if>
+		</where>
+		<if test="start!=-1 and length!=-1 ">
+	     limit #{start},#{length}
+	     </if>
+	</select>
+	
+	
+	
+<select id="getProductInfoCount" parameterType="ProductInfo" resultType="long">
+		select count(*) from product_info
+		<where>
+			<if test="productName != null and productName != ''">
+				<bind name="namePattern" value="'%' + _parameter.productName + '%'"></bind>
+				and product_name like #{namePattern}
+			</if>
+			<if test="productState != null and productState != ''">
+				and product_state = #{productState}
+			</if>
+		</where>
+	</select>
+	
+	
+	<update id="updateProductInfo" parameterType="ProductInfo">
+	update product_info
+	<set>
+	<if test="productName!=null and productName!=''">
+	product_name=#{productName},
+	</if>
+	<if test="productPrice!=null and productPrice!=''">
+	product_Price=#{productPrice},
+	</if>
+	<if test="productUrl != null and productUrl != ''">
+				product_Url = #{productUrl},
+			</if>
+			<if test="productDesc!= null and productDesc != ''">
+				product_desc = #{productDesc},
+			</if>
+			
+			<if test="productState!= null and productState != ''">
+				product_state = #{productState},
+			</if>
+			
+			<if test="productIntro!= null and productIntro != ''">
+				product_intro = #{productIntro},
+			</if>
+
+	
+	</set>
+	where product_id=#{productId}
+	</update>
+	
+	<select id="getProductInfo" parameterType="ProductInfo" resultMap="productmap">
+	     select * from product_info
+	     where product_id=#{productId}
+	</select>
 
 
 </mapper>
