@@ -86,6 +86,9 @@
 	     select * from product_info
 	     where product_id=#{productId}
 	</select>
-
+	
+   <delete id="deleteProductInfo" parameterType="ProductInfo">
+		delete from product_info where product_id = #{productId}
+	</delete>
 
 </mapper>

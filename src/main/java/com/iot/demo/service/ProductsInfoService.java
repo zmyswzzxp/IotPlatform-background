@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import com.iot.demo.bean.ProductInfo;
+import com.iot.demo.bean.UserInfoBack;
 import com.iot.demo.utils.PageBean;
 
 public interface ProductsInfoService {
@@ -14,9 +15,10 @@ public interface ProductsInfoService {
 	public Long getProductInfoCount(ProductInfo productInfo);
 	
 	public void updateProductInfo(ProductInfo productInfo);
-	public ProductInfo getGoodsInfo(ProductInfo productInfo);
+	public ProductInfo getProductInfo(ProductInfo productInfo);
 	
 	public void upProductInfo(ProductInfo productInfo) throws Exception;
 	
 	public void downProductInfo(ProductInfo productInfo) throws Exception;
+	public void deleteProductInfo(ProductInfo productInfo) throws Exception;
 }

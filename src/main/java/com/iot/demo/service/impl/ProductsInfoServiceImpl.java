@@ -103,7 +103,7 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 	}
 
 	@Override
-	public ProductInfo getGoodsInfo(ProductInfo productInfo) {
+	public ProductInfo getProductInfo(ProductInfo productInfo) {
 		// TODO Auto-generated method stub
 		return productInfoMapper.getProductInfo(productInfo);
 	}
@@ -120,6 +120,12 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 		// TODO Auto-generated method stub
 		productInfo.setProductState(Const.GOODS_STATE_DOWN);
 		productInfoMapper.updateProductInfo(productInfo);
+	}
+
+	@Override
+	public void deleteProductInfo(ProductInfo productInfo) throws Exception {
+		// TODO Auto-generated method stub
+		productInfoMapper.deleteProductInfo(productInfo);
 	}
 
 }

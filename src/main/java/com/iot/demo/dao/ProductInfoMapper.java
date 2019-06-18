@@ -6,6 +6,7 @@ import com.iot.demo.bean.ProductInfo;
 
 
 
+
 @Mapper
 public interface ProductInfoMapper {
 
@@ -18,4 +19,6 @@ public interface ProductInfoMapper {
 	public void updateProductInfo(ProductInfo productInfo);
 	
 	public ProductInfo getProductInfo(ProductInfo productInfo);
+	
+	public void deleteProductInfo(ProductInfo productInfo);
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.iot.demo.bean.ProductInfo;
+import com.iot.demo.bean.UserInfoBack;
 import com.iot.demo.service.ProductsInfoService;
 import com.iot.demo.utils.PageBean;
 
@@ -107,7 +108,7 @@ public class ProductsInfoController {
 	@RequestMapping("loadupdate")
 	public String loadUpdate(ProductInfo productInfo,Model model)
 	{
-		ProductInfo pproductInfo=productInfoService.getGoodsInfo(productInfo);
+		ProductInfo pproductInfo=productInfoService.getProductInfo(productInfo);
 		 model.addAttribute("productinfo",pproductInfo);
 		 return "back/productInfo/productInfo_update";
 	}
@@ -152,6 +153,20 @@ public class ProductsInfoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			model.addAttribute("result", "产品下架失败");
+		}
+		return "back/productinfo/productinfo_info";
+	}
+	
+	
+	@RequestMapping("delete")
+	public String deleteProductInfo(ProductInfo productInfo,Model model){
+		try {
+			productInfoService.deleteProductInfo(productInfo);
+			model.addAttribute("result", "删除产品信息成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("result", "删除产品信息失败");
 		}
 		return "back/productinfo/productinfo_info";
 	}
