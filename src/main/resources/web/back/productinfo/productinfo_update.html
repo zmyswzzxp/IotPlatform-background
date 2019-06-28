@@ -19,7 +19,7 @@
 		<li>产品修改</li>
 	</ul>
 </div>
-<form id="producform" action="/back/productinfo/update" method="post" class="form-horizontal">
+<form id="productform" action="/back/productinfo/update" method="post" class="form-horizontal">
 	<h5 class="page-header alert-info"
 		style="margin: 0px; padding: 10px; margin-bottom: 10px;">基本信息</h5>
 		<input type="hidden" name="productId" value="${productinfo.productId}">
@@ -101,17 +101,17 @@
 </form>
 
 <script type="text/javascript">
-	function uploadImg(){
-		var options={
-				url:"/back/productinfo/uploadimg",
-				type:"post",
-				success:function(data){
-					$("#productimg").attr("src",data);
-					$("#productUrl").val(data);
-				}
-		}
-		$("#productform").ajaxSubmit(options);
+function uploadImg(){
+	var options={
+			url:"/back/productinfo/uploadimg",
+			type:"post",
+			success:function(data){
+				$("#productimg").attr("src",data);
+				$("#productUrl").val(data);
+			}
 	}
+	$("#productform").ajaxSubmit(options);
+}
 </script>
 </body>
 </html>

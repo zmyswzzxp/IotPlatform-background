@@ -10,6 +10,45 @@
 		src="/resource/js/bootstrap.min.js"></script>
 <script src="/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/resource/js/jquery.form.js"></script>
+<script type="text/javascript">
+	$(function (){
+		
+		$.getJSON("/js/json/class_1.js",function(data){
+			$(data).each(function(i,json){
+			
+				$("#class_1_select").append("<option value="+json.id+">"+json.flmch1+"</option>");
+			});
+		});
+	});
+	
+	function get_class_2(class_1_id){
+		
+		$.getJSON("/js/json/class_2_"+class_1_id+".js",function(data){
+			$("#class_2_select").empty();
+			$(data).each(function(i,json){
+				$("#class_2_select").append("<option value="+json.id+">"+json.flmch2+"</option>");
+			});
+		});
+		get_tm(class_1_id);
+	}
+	
+	function get_tm(class_1_id){
+		$.getJSON("/js/json/tm_class_1_"+class_1_id+".js",function(data){
+			$("#tm_select").empty();
+			$(data).each(function(i,json){
+				$("#tm_select").append("<option value="+json.id+">"+json.ppmch+"</option>");
+			});
+		});
+	}
+	
+// 	function goto_spu_add(){
+// 		var class_1_id =  $("#class_1_select").val();
+// 		var class_2_id = $("#class_2_select").val();
+// 		var tm_id = $("#tm_select").val();
+		
+// 		window.location.href="goto_spu_add.do?flbh1="+class_1_id+"&flbh2="+class_2_id+"&pp_id="+tm_id;
+// 	}
+</script>
 </head>
 <body>
 <div>
@@ -30,6 +69,7 @@
 				<div class="col-xs-9 ">
 					<input type="text" name="productName" class="form-control" placeholder="请输入产品名称" />
 				</div>
+				
 			</div>
 		</div>
 		<div class="col-xs-5">
@@ -40,7 +80,18 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
+		<div class="row">
+		<div class="col-xs-5">
+		<div class="form-group ">
+		<label class="col-xs-3 control-label">产品分类</label>
+				行业<select id="class_1_select"  onchange="get_class_2(this.value);"><option>请选择</option></select>
+				类别<select  id="class_2_select"><option>请选择</option></select>
+				框架<select  id="tm_select"><option>请选择</option></select>            
+			</div>
+			</div>
+				</div>
+	
 	<!--结束1 -->
 	<!-- 开始2 -->
 	<div class="row">
