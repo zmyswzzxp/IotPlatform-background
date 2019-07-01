@@ -8,7 +8,7 @@
 		<result column="product_name" property="productName"></result>
 		<result column="product_price" property="productPrice"></result>
 		<result column="product_url" property="productUrl"></result>
-			<result column="product_desc" property="productDesc"></result>
+		<result column="product_desc" property="productDesc"></result>
 		<result column="product_state" property="productState"></result>
 		<result column="product_intro" property="productIntro"></result>
 	</resultMap> 

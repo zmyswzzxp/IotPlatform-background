@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iot.demo.dao.TMallClass1Mapper">
+	<select id="findById" parameterType="Integer" resultMap="usermap">
+		select * from user_info_back where id = #{id}
+	</select>
+	
+	<resultMap type="UserInfoBack" id="usermap">
+		<id column="user_id" property="userId"></id>
+		<result column="user_name" property="userName"></result>
+		<result column="user_sex" property="userSex"></result>
+		<result column="user_phone" property="userPhone"></result>
+			<result column="user_pw" property="userPw"></result>
+		<result column="user_type" property="userType"></result>
+	</resultMap> 
+	
+	<resultMap type="TMallClass1" id="tmallmap">
+		<id column="Id" property="id"></id>
+		<result column="flmch1" property="flmch1"></result>
+		
+	</resultMap> 
+	
+	
+	
+	<select id="getUserInfoBackList1" parameterType="UserInfoBack" resultMap="usermap">
+	     select * from user_info_back
+	     	<where>
+			<if test="userName != null and userName != ''">
+				<bind name="namePattern" value="'%' + _parameter.userName + '%'"></bind>
+				and user_name like #{namePattern}
+			</if>
+			<if test="userPhone != null and userPhone != ''">
+				<bind name="phonePattern" value="'%' + _parameter.userPhone + '%'"></bind>
+				and user_phone like #{phonePattern}
+			</if>
+		</where>
+		<if test="start!=-1 and length!=-1 ">
+	     limit #{start},#{length}
+	     </if>
+	</select>
+	
+	
+	
+	<select id="getTMallClasslist" parameterType="TMallClass1" resultMap="tmallmap">
+	     select * from t_mall_class_1
+	     	
+	</select>
+	
+	
+</mapper>

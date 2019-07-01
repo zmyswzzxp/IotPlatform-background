@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iot.demo.dao.TMallTradeMarkMapper">
+	
+	
+
+	
+	<resultMap type="TMallTradeMark" id="tmalltrademap">
+		<id column="Id" property="id"></id>
+		<result column="ppmch" property="ppmch"></result>
+		<result column="url" property="url"></result>
+		
+	</resultMap> 
+
+	<select id="getTMallTradeMarklist" parameterType="TMallTradeMark" resultMap="tmalltrademap">
+	     select * from t_mall_trade_mark
+	     	
+	</select>
+	
+	
+</mapper>
