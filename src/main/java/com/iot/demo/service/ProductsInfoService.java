@@ -1,5 +1,7 @@
 package com.iot.demo.service;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -10,7 +12,7 @@ import com.iot.demo.utils.PageBean;
 public interface ProductsInfoService {
 	public String doPutToFilesServer(MultipartFile file);
 	
-	public void addProductInfo(ProductInfo productInfo) throws Exception;
+	public void addProductInfo(ProductInfo productInfo,List<String> listimge) throws Exception;
 	public PageBean<ProductInfo> getProductInfoList(ProductInfo productInfo,Integer page);
 	public Long getProductInfoCount(ProductInfo productInfo);
 	

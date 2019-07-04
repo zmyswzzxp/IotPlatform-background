@@ -21,7 +21,23 @@
 		});
 	});
 	
+	
+	
+	
+	function get_class_2Value(class_2_id){
+		
+		$("#flbh2").val(class_2_id);
+		
+	}
+	function get_tm_Value(tm_select_id){
+		
+		$("#ppId").val(tm_select_id);
+		
+	}
+	
 	function get_class_2(class_1_id){
+		$("#flbh1").val(class_1_id);
+		
 		
 		$.getJSON("/js/json/class_2_"+class_1_id+".js",function(data){
 			$("#class_2_select").empty();
@@ -30,6 +46,7 @@
 			});
 		});
 		get_tm(class_1_id);
+		
 	}
 	
 	function get_tm(class_1_id){
@@ -41,13 +58,41 @@
 		});
 	}
 	
-// 	function goto_spu_add(){
-// 		var class_1_id =  $("#class_1_select").val();
-// 		var class_2_id = $("#class_2_select").val();
-// 		var tm_id = $("#tm_select").val();
+	
+	function click_image(index){
 		
-// 		window.location.href="goto_spu_add.do?flbh1="+class_1_id+"&flbh2="+class_2_id+"&pp_id="+tm_id;
-// 	}
+		$("#file_"+index).click();
+
+	}
+	
+	function replace_image(index){
+		// 获得图片对象
+		
+		var blob_image = $("#file_"+index)[0].files[0];
+
+		var url = window.URL.createObjectURL(blob_image);
+
+		// 替换image
+		$("#image_"+index).attr("src",url);
+
+		var length = $(":file").length;
+		
+// 		if((index+1)==length){
+			// 用户选择的是最后一张图片
+			add_image(index);
+// 		}
+	}
+	
+	function add_image(index){
+	
+		var a = '<div id ="d_'+(index+1)+'" style="float:left;margin-left:10px;border:1px red solid;">';
+		var b = '<input id="file_'+(index+1)+'" type="file" name="files" style="display:none;" onChange="replace_image('+(index+1)+')"/>'
+		var c = '<img id="image_'+(index+1)+'" onclick="click_image('+(index+1)+')" style="cursor:pointer;" src="image/upload_hover.png" width="100px" height="100px"/>'
+		var d = '</div>';
+		$("#d_"+index).after(a+b+c+d);
+		
+	}
+
 </script>
 </head>
 <body>
@@ -58,7 +103,7 @@
 		<li>产品添加</li>
 	</ul>
 </div>
-<form id="productform" action="/back/productinfo/add" method="post" class="form-horizontal">
+<form id="productform" action="/back/productinfo/add" method="post" class="form-horizontal" enctype="multipart/form-data">
 	<h5 class="page-header alert-info"
 		style="margin: 0px; padding: 10px; margin-bottom: 10px;">基本信息</h5>
 	<!-- 开始1 -->
@@ -86,8 +131,8 @@
 		<div class="form-group ">
 		<label class="col-xs-3 control-label">产品分类</label>
 				行业<select id="class_1_select"  onchange="get_class_2(this.value);"><option>请选择</option></select>
-				类别<select  id="class_2_select"><option>请选择</option></select>
-				框架<select  id="tm_select"><option>请选择</option></select>            
+				类别<select  id="class_2_select" onchange="get_class_2Value(this.value);"><option>请选择</option></select>
+				框架<select  id="tm_select" onchange="get_tm_Value(this.value);"><option>请选择</option></select>            
 			</div>
 			</div>
 				</div>
@@ -113,6 +158,29 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="form-group ">
+				<label class="col-xs-3 control-label">产品图片2</label>
+				<div class="col-xs-9 ">
+					<input type="file" name="upload2" class="form-control" onchange="uploadImg2()"/>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-5">
+			<div class="form-group ">
+				<label class="col-xs-3 control-label">图片预览2</label>
+				<div class="col-xs-9 ">
+					<img alt="" id="productimg2" src="" style="width:100px;height:150px;object-fit:contain">
+					<input type="hidden" name="productUrl2" id="productUrl2">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 	<!--结束2 -->
 
 
@@ -139,18 +207,37 @@
 			</div>
 		</div>
 	</div>
+	<h5 class="page-header alert-info"
+		style="margin: 0px; padding: 10px; margin-bottom: 10px;">产品图片</h5>
+	<div class="row" id ="d_0" style="float:left;margin-left:10px;border:1px red solid;">
+			<input id="file_0" type="file" name="files" style="display:none;" onChange="replace_image(0)"/>
+			<img id="image_0" onclick="click_image(0)" style="cursor:pointer;" src="image/upload_hover.png" height="100px" width="100px"/>
+	</div>
 	<!--结束6 -->
 
 	<div class="row">
 		<div class="col-xs-3 col-xs-offset-4">
-			<input type="submit" class="btn btn-success" value="保存产品" /> <input
-				type="reset" class="btn btn-danger" value="重置信息" />
+			<input type="submit" class="btn btn-success" value="保存产品" /> 
+			<input type="reset" class="btn btn-danger" value="重置信息" />
+			
+			<input type="hidden" name="flbh1" id="flbh1">
+			<input type="hidden" name="flbh2" id="flbh2">
+			<input type="hidden" name="ppId" id="ppId">
 		</div>
 	</div>
 
 </form>
 
 <script type="text/javascript">
+function goto_spu_add(){
+var class_1_id=	$("#class_1_select").val();
+var class_2_id=	$("#class_2_select").val();
+var tm_id=	$("#tm_select").val();
+
+window.location.href="goto_spu_add.do?flbh1="+class_1_id+"&flbh2="+class_2_id+"&pp_id="+tm_id;
+
+}
+
 	function uploadImg(){
 		var options={
 				url:"/back/productinfo/uploadimg",
@@ -158,6 +245,18 @@
 				success:function(data){
 					$("#productimg").attr("src",data);
 					$("#productUrl").val(data);
+				}
+		}
+		$("#productform").ajaxSubmit(options);
+	}
+	
+	function uploadImg2(){
+		var options={
+				url:"/back/productinfo/uploadimg2",
+				type:"post",
+				success:function(data){
+					$("#productimg2").attr("src",data);
+					$("#productUrl2").val(data);
 				}
 		}
 		$("#productform").ajaxSubmit(options);

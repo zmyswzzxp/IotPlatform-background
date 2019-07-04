@@ -1,7 +1,10 @@
 package com.iot.demo.service.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,10 +52,19 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 	}
 
 	@Override
-	public void addProductInfo(ProductInfo productInfo) throws Exception {
+	public void addProductInfo(ProductInfo productInfo,List<String> listimage) throws Exception {
 		// TODO Auto-generated method stub
 		productInfo.setProductState(Const.GOODS_STATE_INIT);
 		productInfoMapper.addProductInfo(productInfo);
+		
+		int id=productInfo.getProductId();
+		//model.addAttribute("result","添加产品成功");
+		Map<Object,Object> map=new HashMap<Object,Object>();
+		
+		map.put("chanpin_id", productInfo.getProductId());
+		map.put("list_image",listimage);
+		productInfoMapper.addProductImage(map);
+		
 	}
 
 	@Override

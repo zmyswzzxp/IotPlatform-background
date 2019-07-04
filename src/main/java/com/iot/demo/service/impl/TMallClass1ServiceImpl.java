@@ -13,7 +13,7 @@ import com.iot.demo.bean.UserInfoBack;
 import com.iot.demo.dao.ProductInfoMapper;
 import com.iot.demo.dao.TMallClass1Mapper;
 import com.iot.demo.dao.TMallClass2Mapper;
-import com.iot.demo.dao.TMallTradeMarkMapper;
+
 import com.iot.demo.service.TMallClass1Service;
 import com.iot.demo.utils.Const;
 import com.iot.demo.utils.PageBean;
@@ -27,8 +27,8 @@ public class TMallClass1ServiceImpl  implements TMallClass1Service{
 	@Autowired
 	private TMallClass2Mapper tMallClass2Mapper;
 	
-	@Autowired
-	private TMallTradeMarkMapper tMallTradeMarkMapper;
+//	@Autowired
+//	private TMallTradeMarkMapper tMallTradeMarkMapper;
 
 	@Override
 	public List<TMallClass1> getTMallClasslist() {
@@ -41,12 +41,18 @@ public class TMallClass1ServiceImpl  implements TMallClass1Service{
 		// TODO Auto-generated method stub
 		return tMallClass2Mapper.getTMallClass2list();
 	}
-	
+
 	@Override
 	public List<TMallTradeMark> getTMallTradeMarklist() {
 		// TODO Auto-generated method stub
-		return tMallTradeMarkMapper.getTMallTradeMarklist();
+		return null;
 	}
+	
+//	@Override
+//	public List<TMallTradeMark> getTMallTradeMarklist() {
+//		// TODO Auto-generated method stub
+//		return tMallTradeMarkMapper.getTMallTradeMarklist();
+//	}
 	
 	
 

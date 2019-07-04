@@ -3,73 +3,103 @@ package com.iot.demo.bean;
 import com.iot.demo.utils.BaseBean;
 
 public class ProductInfo extends BaseBean{
-    private Integer productId;
+	 private Integer productId;
 
-    private String productName;
+	    private String productName;
 
-    private String productPrice;
+	    private String productPrice;
 
-    private String productUrl;
+	    private String productUrl;
 
-    private String productDesc;
+	    private String productState;
 
-    private String productState;
+	    private String productIntro;
 
-    private String productIntro;
+	    private Integer flbh1;
 
-    public Integer getProductId() {
-        return productId;
-    }
+	    private Integer flbh2;
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+	    private Integer ppid;
 
-    public String getProductName() {
-        return productName;
-    }
+	    private String productDesc;
 
-    public void setProductName(String productName) {
-        this.productName = productName == null ? null : productName.trim();
-    }
+	    public Integer getProductId() {
+	        return productId;
+	    }
 
-    public String getProductPrice() {
-        return productPrice;
-    }
+	    public void setProductId(Integer productId) {
+	        this.productId = productId;
+	    }
 
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice == null ? null : productPrice.trim();
-    }
+	    public String getProductName() {
+	        return productName;
+	    }
 
-    public String getProductUrl() {
-        return productUrl;
-    }
+	    public void setProductName(String productName) {
+	        this.productName = productName == null ? null : productName.trim();
+	    }
 
-    public void setProductUrl(String productUrl) {
-        this.productUrl = productUrl == null ? null : productUrl.trim();
-    }
+	    public String getProductPrice() {
+	        return productPrice;
+	    }
 
-    public String getProductDesc() {
-        return productDesc;
-    }
+	    public void setProductPrice(String productPrice) {
+	        this.productPrice = productPrice == null ? null : productPrice.trim();
+	    }
 
-    public void setProductDesc(String productDesc) {
-        this.productDesc = productDesc == null ? null : productDesc.trim();
-    }
+	    public String getProductUrl() {
+	        return productUrl;
+	    }
 
-    public String getProductState() {
-        return productState;
-    }
+	    public void setProductUrl(String productUrl) {
+	        this.productUrl = productUrl == null ? null : productUrl.trim();
+	    }
 
-    public void setProductState(String productState) {
-        this.productState = productState == null ? null : productState.trim();
-    }
+	    public String getProductState() {
+	        return productState;
+	    }
 
-    public String getProductIntro() {
-        return productIntro;
-    }
+	    public void setProductState(String productState) {
+	        this.productState = productState == null ? null : productState.trim();
+	    }
 
-    public void setProductIntro(String productIntro) {
-        this.productIntro = productIntro == null ? null : productIntro.trim();
-    }
+	    public String getProductIntro() {
+	        return productIntro;
+	    }
+
+	    public void setProductIntro(String productIntro) {
+	        this.productIntro = productIntro == null ? null : productIntro.trim();
+	    }
+
+	    public Integer getFlbh1() {
+	        return flbh1;
+	    }
+
+	    public void setFlbh1(Integer flbh1) {
+	        this.flbh1 = flbh1;
+	    }
+
+	    public Integer getFlbh2() {
+	        return flbh2;
+	    }
+
+	    public void setFlbh2(Integer flbh2) {
+	        this.flbh2 = flbh2;
+	    }
+
+	    public Integer getPpId() {
+	        return ppid;
+	    }
+
+	    public void setPpId(Integer ppId) {
+	        this.ppid = ppId;
+	    }
+
+	    public String getProductDesc() {
+	        return productDesc;
+	    }
+
+	    public void setProductDesc(String productDesc) {
+	        this.productDesc = productDesc == null ? null : productDesc.trim();
+	    }
 }
