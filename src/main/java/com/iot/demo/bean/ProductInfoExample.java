@@ -3,7 +3,36 @@ package com.iot.demo.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductInfoExample {
+public class ProductInfoExample  extends ProductInfo{
+	
+	public String getFlmch1() {
+		return flmch1;
+	}
+
+	public void setFlmch1(String flmch1) {
+		this.flmch1 = flmch1;
+	}
+
+	public String getFlmch2() {
+		return flmch2;
+	}
+
+	public void setFlmch2(String flmch2) {
+		this.flmch2 = flmch2;
+	}
+
+	public String getPpmch() {
+		return ppmch;
+	}
+
+	public void setPpmch(String ppmch) {
+		this.ppmch = ppmch;
+	}
+
+	private String flmch1;
+	 private String flmch2;
+	 private String ppmch;
+	
     protected String orderByClause;
 
     protected boolean distinct;

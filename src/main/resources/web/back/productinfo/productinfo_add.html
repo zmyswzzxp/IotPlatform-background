@@ -77,10 +77,10 @@
 
 		var length = $(":file").length;
 		
-// 		if((index+1)==length){
+ 		if((index+1)==length){
 			// 用户选择的是最后一张图片
 			add_image(index);
-// 		}
+ 		}
 	}
 	
 	function add_image(index){
@@ -139,46 +139,28 @@
 	
 	<!--结束1 -->
 	<!-- 开始2 -->
-	<div class="row">
-		<div class="col-xs-5">
-			<div class="form-group ">
-				<label class="col-xs-3 control-label">产品图片</label>
-				<div class="col-xs-9 ">
-					<input type="file" name="upload" class="form-control" onchange="uploadImg()"/>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-5">
-			<div class="form-group ">
-				<label class="col-xs-3 control-label">图片预览</label>
-				<div class="col-xs-9 ">
-					<img alt="" id="productimg" src="" style="width:100px;height:150px;object-fit:contain">
-					<input type="hidden" name="productUrl" id="productUrl">
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- 	<div class="row"> -->
+<!-- 		<div class="col-xs-5"> -->
+<!-- 			<div class="form-group "> -->
+<!-- 				<label class="col-xs-3 control-label">产品图片</label> -->
+<!-- 				<div class="col-xs-9 "> -->
+<!-- 					<input type="file" name="upload" class="form-control" onchange="uploadImg()"/> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="col-xs-5"> -->
+<!-- 			<div class="form-group "> -->
+<!-- 				<label class="col-xs-3 control-label">图片预览</label> -->
+<!-- 				<div class="col-xs-9 "> -->
+<!-- 					<img alt="" id="productimg" src="" style="width:100px;height:150px;object-fit:contain"> -->
+<!-- 					<input type="hidden" name="productUrl" id="productUrl"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	
 	
-	<div class="row">
-		<div class="col-xs-5">
-			<div class="form-group ">
-				<label class="col-xs-3 control-label">产品图片2</label>
-				<div class="col-xs-9 ">
-					<input type="file" name="upload2" class="form-control" onchange="uploadImg2()"/>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-5">
-			<div class="form-group ">
-				<label class="col-xs-3 control-label">图片预览2</label>
-				<div class="col-xs-9 ">
-					<img alt="" id="productimg2" src="" style="width:100px;height:150px;object-fit:contain">
-					<input type="hidden" name="productUrl2" id="productUrl2">
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	
 	
 	<!--结束2 -->
@@ -209,9 +191,10 @@
 	</div>
 	<h5 class="page-header alert-info"
 		style="margin: 0px; padding: 10px; margin-bottom: 10px;">产品图片</h5>
+		 
 	<div class="row" id ="d_0" style="float:left;margin-left:10px;border:1px red solid;">
 			<input id="file_0" type="file" name="files" style="display:none;" onChange="replace_image(0)"/>
-			<img id="image_0" onclick="click_image(0)" style="cursor:pointer;" src="image/upload_hover.png" height="100px" width="100px"/>
+			<img id="image_0" onclick="click_image(0)" style="cursor:pointer;"  src="/assets/avatars/upload_hover.png" height="100px" width="100px"/>
 	</div>
 	<!--结束6 -->
 

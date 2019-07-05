@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import com.iot.demo.bean.ProductInfo;
+import com.iot.demo.bean.ProductInfoExample;
+import com.iot.demo.bean.ProductInfoQueryVo;
 import com.iot.demo.dao.ProductInfoMapper;
 import com.iot.demo.service.ProductsInfoService;
 import com.iot.demo.utils.Const;
@@ -68,7 +70,7 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 	}
 
 	@Override
-	public PageBean<ProductInfo> getProductInfoList(ProductInfo productInfo, Integer page) {
+	public PageBean<ProductInfoExample> getProductInfoList(ProductInfo productInfo, Integer page) {
 		// TODO Auto-generated method stub
 		
 		// TODO Auto-generated method stub
@@ -87,13 +89,14 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 						}
 						
 						
+						List<ProductInfoExample> goods2=productInfoMapper.getProductInfoListDetail(productInfo);
 
 						List<ProductInfo> goods=productInfoMapper.getProductInfoList(productInfo);
 						
-						PageBean<ProductInfo> pageBean=new PageBean<>();
+						PageBean<ProductInfoExample> pageBean=new PageBean<>();
 						pageBean.setAllRow(allRow);
 						pageBean.setCurrentPage(currentPage);
-						pageBean.setList(goods);
+						pageBean.setList(goods2);
 						pageBean.setPageSize(Const.PAGE_SIZE);
 				        pageBean.setTotalPage(totalPage);
 						return pageBean;
@@ -119,6 +122,13 @@ public class ProductsInfoServiceImpl implements ProductsInfoService {
 		// TODO Auto-generated method stub
 		return productInfoMapper.getProductInfo(productInfo);
 	}
+	
+	@Override
+	public ProductInfoExample getproductInfoQueryVo(ProductInfoQueryVo productInfoQueryVo) {
+		// TODO Auto-generated method stub
+		return productInfoMapper.findProductDetail(productInfoQueryVo);
+	}
+	
 
 	@Override
 	public void upProductInfo(ProductInfo productInfo) throws Exception {

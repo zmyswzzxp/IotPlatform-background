@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iot.demo.bean.ProductInfo;
+import com.iot.demo.bean.ProductInfoExample;
+import com.iot.demo.bean.ProductInfoQueryVo;
 import com.iot.demo.bean.UserInfoBack;
 import com.iot.demo.service.ProductsInfoService;
 import com.iot.demo.utils.PageBean;
@@ -74,9 +76,9 @@ public class ProductsInfoController {
 	
 	@RequestMapping("list")
 	public String list(ProductInfo productInfo,Model model,Integer page){
-		PageBean<ProductInfo> pageBean=productInfoService.getProductInfoList(productInfo, page);
+		PageBean<ProductInfoExample> pageBean=productInfoService.getProductInfoList(productInfo, page);
 	   model.addAttribute("pageBean",pageBean);
-	   model.addAttribute("productInfo",productInfo);
+	   model.addAttribute("ProductInfoExample",productInfo);
 	   return "back/productInfo/productInfo_list";
 	}
 	
@@ -107,7 +109,7 @@ public class ProductsInfoController {
 			}
 			
 			
-			
+			productInfo.setProductUrl(listimage.get(0));
 			
 			productInfoService.addProductInfo(productInfo,listimage);
 			model.addAttribute("result","添加产品成功");
@@ -119,21 +121,18 @@ public class ProductsInfoController {
 		}
 		return "back/productinfo/productinfo_info";
 	}
-//	
-//	
-//	
-//	@RequestMapping("list")
-//	public String list(GoodsInfo goodsInfo,Model model,Integer page){
-//		PageBean<GoodsInfo> pageBean=goodsInfoService.getGoodsInfoList(goodsInfo, page);
-//	   model.addAttribute("pageBean",pageBean);
-//	   model.addAttribute("goodsInfo",goodsInfo);
-//	   return "back/goodsInfo/goodsInfo_list";
-//	}
+
 //	
 	@RequestMapping("loadupdate")
 	public String loadUpdate(ProductInfo productInfo,Model model)
 	{
-		ProductInfo pproductInfo=productInfoService.getProductInfo(productInfo);
+//		ProductInfoQueryVo productInfoQueryVo=new ProductInfoQueryVo();
+//		ProductInfo productInfo1=new ProductInfo();
+//		productInfo1.setProductId(16);
+//		productInfoQueryVo.setProductInfo(productInfo1);
+//		ProductInfoExample productInfoExample=productInfoService.getproductInfoQueryVo(productInfoQueryVo);
+		
+		 ProductInfo pproductInfo=productInfoService.getProductInfo(productInfo);
 		 model.addAttribute("productinfo",pproductInfo);
 		 return "back/productInfo/productInfo_update";
 	}
@@ -219,21 +218,6 @@ public class ProductsInfoController {
 	}
 	
 	
-	@RequestMapping("add2")
-	public ModelAndView add2(@RequestParam("files") MultipartFile[] files, ProductInfo productInfo) {
 
-//		// 上传图片
-//		List<String> list_image = MyFileUpload.upload_image(files);
-//
-//		// 保存商品信息
-//		spuServiceInf.save_spu(list_image, spu);
-
-		ModelAndView mv = new ModelAndView("redirect:/goto_spu_add.do");
-//		mv.addObject("flbh1", spu.getFlbh1());
-//		mv.addObject("flbh2", spu.getFlbh2());
-//		mv.addObject("pp_id", spu.getPp_id());
-
-		return mv;
-	}
 
 }

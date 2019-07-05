@@ -38,14 +38,22 @@
 					<th>产品编号</th>
 					<th>产品简介</th>
 					<th>产品价格</th>
+					
+					<th>行业</th>
+					<th>类别</th>
+					<th>框架</th>
 					<th>产品状态</th>
 					<th>操作</th>
+					
 				</tr>
 				<#list (pageBean.list)! as g>
 					<tr>
 						<td>${(g.productId)!}</td>
 						<td><img src="${(g.productUrl)!}" style="width:50px;height:75px;object-fit:contain">${(g.productName)!}</td>
 						<td>${(g.productPrice)!}</td>
+						<td>${(g.flmch1)!}</td>
+							<td>${(g.flmch2)!}</td>
+							<td>${(g.ppmch)!}</td>
 						<td>
 						<#if g.productState??>
 							<#if g.productState == '1'>
@@ -70,6 +78,8 @@
 								<a href="/back/productinfo/downproduct?productId=${(g.productId)!}">下架</a>
 							</#if>
 							<a href="javascript:void(0)" onclick="del(${(g.productId)!})">删除</a></td>
+							
+							
 					</tr>
 				</#list>
 			</table>

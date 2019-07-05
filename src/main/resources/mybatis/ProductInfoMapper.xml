@@ -14,8 +14,38 @@
 		<result column="flbh1" property="flbh1"></result>
 		<result column="flbh2" property="flbh2"></result>
 		<result column="pp_id" property="ppid"></result>
-		
 	</resultMap> 
+	
+	
+	<resultMap type="ProductInfoExample" id="productExamplemap">
+		<id column="product_id" property="productId"></id>
+		<result column="product_name" property="productName"></result>
+		<result column="product_price" property="productPrice"></result>
+		<result column="product_url" property="productUrl"></result>
+		<result column="product_desc" property="productDesc"></result>
+		<result column="product_state" property="productState"></result>
+		<result column="product_intro" property="productIntro"></result>
+		<result column="flbh1" property="flbh1"></result>
+		<result column="flbh2" property="flbh2"></result>
+		<result column="pp_id" property="ppid"></result>
+		
+		<result column="flmch1" property="flmch1"></result>
+		<result column="flmch2" property="flmch2"></result>
+		<result column="ppmch" property="ppmch"></result>
+	</resultMap> 
+	
+<!-- 	<resultMap type="ProductImageQueryVo" id="ProductImageproductmap"> -->
+<!-- 		<id column="product_id" property="productId"></id> -->
+<!-- 		<result column="product_name" property="productName"></result> -->
+<!-- 		<result column="product_price" property="productPrice"></result> -->
+<!-- 		<result column="product_url" property="productUrl"></result> -->
+<!-- 		<result column="product_desc" property="productDesc"></result> -->
+<!-- 		<result column="product_state" property="productState"></result> -->
+<!-- 		<result column="product_intro" property="productIntro"></result> -->
+<!-- 		<result column="flbh1" property="flbh1"></result> -->
+<!-- 		<result column="flbh2" property="flbh2"></result> -->
+<!-- 		<result column="pp_id" property="ppid"></result> -->
+<!-- 	</resultMap>  -->
 	
 	
 	<resultMap type="ProductImage" id="productimagemap">
@@ -115,5 +145,35 @@
    <delete id="deleteProductInfo" parameterType="ProductInfo">
 		delete from product_info where product_id = #{productId}
 	</delete>
+	
+	
+	<select id="findProductDetail" parameterType="com.iot.demo.bean.ProductInfoQueryVo" resultMap="productExamplemap">
+	     select product_info.* from product_info
+	     where product_id=#{productInfo.productId}
+	</select>
+	
+	
+	<select id="getProductInfoListDetail" parameterType="com.iot.demo.bean.ProductInfo" resultMap="productExamplemap">
+	     select product_info.*,t_mall_class_1.flmch1,t_mall_class_2.flmch2,t_mall_trade_mark.ppmch from product_info,t_mall_class_1,t_mall_class_2,t_mall_trade_mark
+	     	<where>
+	     	 
+	     	 product_info.flbh1=t_mall_class_1.id
+	     	 and 
+	     	 product_info.flbh2=t_mall_class_2.id
+	     	  and 
+	     	  product_info.pp_id=t_mall_trade_mark.id
+			<if test="productName != null and productName != ''">
+				<bind name="namePattern" value="'%' + _parameter.productName + '%'"></bind>
+				and product_name like #{namePattern}
+			</if>
+			<if test="productState != null and productState != ''">
+
+				and product_state  =#{productState}
+			</if>
+		</where>
+		<if test="start!=-1 and length!=-1 ">
+	     limit #{start},#{length}
+	     </if>
+	</select>
 
 </mapper>
