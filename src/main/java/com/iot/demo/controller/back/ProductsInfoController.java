@@ -218,6 +218,16 @@ public class ProductsInfoController {
 	}
 	
 	
+	@RequestMapping("goto_attr")
+	public String goto_attr(ModelMap map,ProductInfo spu)
+	{
+		return "back/productattr/attr";
+	}
+	
+	
+	
+	
+	
 
 
 }

@@ -12,10 +12,11 @@
 <script type="text/javascript" src="/resource/js/jquery.form.js"></script>
 <script type="text/javascript">
 	$(function (){
-		
+		alert(0);
 		$.getJSON("/js/json/class_1.js",function(data){
+			alert(1);
 			$(data).each(function(i,json){
-			
+				alert(2);
 				$("#class_1_select").append("<option value="+json.id+">"+json.flmch1+"</option>");
 			});
 		});

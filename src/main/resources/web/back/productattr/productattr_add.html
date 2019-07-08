@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>商品管理-商品添加</title>
+<link href="/resource/css/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/resource/js/jquery.min.js"></script>
+<script type="text/javascript"
+		src="/resource/js/bootstrap.min.js"></script>
+<script src="/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/resource/js/jquery.form.js"></script>
+
+</head>
+<body>
+<div>
+	<ul class="breadcrumb" style="margin: 0px;">
+		<li>系统管理</li>
+		<li>产品管理</li>
+		<li>产品添加</li>
+	</ul>
+</div>
+<form id="productform" action="/attr_add" method="post" class="form-horizontal" enctype="multipart/form-data">
+
+	<!--结束2 -->
+	<h5 class="page-header alert-info"
+		style="margin: 0px; padding: 10px; margin-bottom: 10px;">产品简介</h5>
+	<!-- 开始5 -->
+	<div class="row">
+			<div class="form-group ">
+			111111111111111111111111111111---<input type="text" value="${flbh2}" name="flbh2"/>
+			<table border="1" width="800px" >
+			<tr><td>1111111111属性名：<input type="text" /></td><td></td><td>添加属性值</td></tr>
+			<tr><td>1111111111属性值：<input type="text" /></td><td>单位：<input type="text" /></td><td>删除</td></tr>
+			<tr><td>1111111111属性值：<input type="text" /></td><td>单位：<input type="text" /></td><td>删除</td></tr>
+		</table>
+		
+		<table border="1" width="800px" >
+			<tr><td>1111111111属性名：<input type="text"  /></td><td></td><td>添加属性值</td></tr>
+			<tr><td>1111111111属性值：<input type="text"  /></td><td>单位：<input type="text" /></td><td>删除</td></tr>
+			<tr><td>1111111111属性值：<input type="text"  /></td><td>单位：<input type="text" /></td><td>删除</td></tr>
+		</table>
+<!-- 				<label class="col-xs-2 control-label">产品简介</label> -->
+<!-- 				<div class="col-xs-10 "> -->
+<!-- 					<textarea name="productIntro" rows="" class="col-xs-12 " cols=""></textarea> -->
+<!-- 				</div> -->
+			</div>
+	</div>
+	<!--结束5 -->
+
+	<!--结束6 -->
+
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-4">
+			<input type="submit" class="btn btn-success" value="保存产品" /> 
+			<input type="reset" class="btn btn-danger" value="重置信息" />
+			
+			<input type="hidden" name="flbh1" id="flbh1">
+			<input type="hidden" name="flbh2" id="flbh2">
+			<input type="hidden" name="ppId" id="ppId">
+		</div>
+	</div>
+
+</form>
+
+<script type="text/javascript">
+function goto_spu_add(){
+var class_1_id=	$("#class_1_select").val();
+var class_2_id=	$("#class_2_select").val();
+var tm_id=	$("#tm_select").val();
+
+window.location.href="goto_spu_add.do?flbh1="+class_1_id+"&flbh2="+class_2_id+"&pp_id="+tm_id;
+
+}
+
+	function uploadImg(){
+		var options={
+				url:"/back/productinfo/uploadimg",
+				type:"post",
+				success:function(data){
+					$("#productimg").attr("src",data);
+					$("#productUrl").val(data);
+				}
+		}
+		$("#productform").ajaxSubmit(options);
+	}
+	
+	function uploadImg2(){
+		var options={
+				url:"/back/productinfo/uploadimg2",
+				type:"post",
+				success:function(data){
+					$("#productimg2").attr("src",data);
+					$("#productUrl2").val(data);
+				}
+		}
+		$("#productform").ajaxSubmit(options);
+	}
+</script>
+</body>
+</html>
